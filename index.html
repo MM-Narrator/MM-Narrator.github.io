@@ -41,6 +41,29 @@
   <script src="./static/js/index.js"></script>
 
   <style>
+    .image-zoom {
+      width: 300px;
+      height: auto;
+    }
+    
+    /* Style for the magnifying glass */
+    .magnifier {
+      position: absolute;
+      border: 3px solid #000;
+      border-radius: 50%;
+      cursor: zoom-in;
+      /* Size of the magnifier */
+      width: 100px;
+      height: 100px;
+      /* This makes the magnifier glass background not move */
+      background-repeat: no-repeat;
+      /* Hide the magnifier by default */
+      display: none;
+    }
+    
+
+
+    
 		/* Define the grid layout */
 		.mygrid {
 			display: grid;
@@ -235,7 +258,7 @@
       <p class="subtitle has-text-centered">
         <b>MM-Narrator</b> is a training-free framework towards automatic <b>audio description (AD)</b> generation for <b>long-form videos</b> via iterations: for each scene, it perceives multimodal inputs (i.e., seeing <span style="color: rgb(162, 193, 207);font-weight: bold;">visual frames</span> and hearing <span style="color: rgb(71, 211, 90);font-weight: bold;">character dialogues</span>), recalls the <span style="color: rgb(216, 110, 204);font-weight: bold;">context AD</span> depicting past scenes, and infers <span style="color: rgb(233, 113, 50);font-weight: bold;">AD prediction</span> for the current scene.
       <p>
-      <a href="images/full_teaser.png" target="popup"> <img id="teaser" width="100%" src="images/full_teaser.png"></a>
+      <a href="images/full_teaser.png" target="popup"> <img id="teaser" width="100%"  class="image-zoom" src="images/full_teaser.png"></a>
 
 
     </div>
@@ -265,7 +288,7 @@ We present MM-Narrator, a novel system leveraging GPT-4 with multimodal in-conte
           <div class="column is-four-fifths">
             <h2 class="title is-3">AD Generation with MM-Narrator</h2>
             <div class="content has-text-justified">
-              <a href="images/ADGen.png" target="popup"> <img id="ADGen" width="100%" src="images/ADGen.png"></a>
+              <a href="images/ADGen.png" target="popup"> <img id="ADGen" width="100%"  class="image-zoom" src="images/ADGen.png"></a>
             </div>
           </div>
         </div>
@@ -278,7 +301,7 @@ We present MM-Narrator, a novel system leveraging GPT-4 with multimodal in-conte
         <div class="column is-four-fifths">
           <h2 class="title is-3">AD Evaluation with <span style="font-family: 'Courier New';">SegEval</span></h2>
           <div class="content has-text-justified">
-            <a href="images/ADEval.png" target="popup"> <img id="ADEval" width="100%" src="images/ADEval.png"></a>
+            <a href="images/ADEval.png" target="popup"> <img id="ADEval" width="100%" class="image-zoom" src="images/ADEval.png"></a>
           </div>
         </div>
       </div>
@@ -291,7 +314,7 @@ We present MM-Narrator, a novel system leveraging GPT-4 with multimodal in-conte
         <div class="column is-four-fifths">
           <h2 class="title is-3">Qualitative Results on MAD-eval Benchmark</span></h2>
           <div class="content has-text-justified">
-            <a href="images/full_qual.png" target="popup"> <img id="Qual" width="100%" src="images/full_qual.png"></a>
+            <a href="images/full_qual.png" target="popup"> <img id="Qual" width="100%"  class="image-zoom" src="images/full_qual.png"></a>
           </div>
         </div>
       </div>
@@ -361,6 +384,39 @@ We present MM-Narrator, a novel system leveraging GPT-4 with multimodal in-conte
 
 
 <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var images = document.querySelectorAll('.image-zoom');
+    var magnifierGlass = document.createElement("div");
+    magnifierGlass.setAttribute("class", "magnifier");
+  
+    images.forEach(function(img) {
+      img.addEventListener('mouseover', function() {
+        magnifierGlass.style.display = "block";
+        magnifierGlass.style.backgroundImage = `url(${img.src})`;
+        document.body.appendChild(magnifierGlass);
+      });
+  
+      img.addEventListener('mousemove', function(e) {
+        var bounds = img.getBoundingClientRect();
+        var x = e.pageX - bounds.left;
+        var y = e.pageY - bounds.top;
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
+        magnifierGlass.style.backgroundPosition = "-" + (x * 3) + "px -" + (y * 3) + "px";
+        magnifierGlass.style.left = e.pageX - 50 + 'px';
+        magnifierGlass.style.top = e.pageY - 50 + 'px';
+      });
+  
+      img.addEventListener('mouseout', function() {
+        magnifierGlass.style.display = "none";
+      });
+    });
+  });
+  
+
+
+
   $(".grid_item").hover(function () {
     $(this).css("background", "#f2f1f1");
     }, 
