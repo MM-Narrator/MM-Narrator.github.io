@@ -191,7 +191,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://mm-narrator.github.io/" 
+                <a href="https://arxiv.org/pdf/2311.17435.pdf" 
                    class="external-link button is-normal is-rounded is-dark"
                    target="_blank">
                   <span class="icon">
@@ -335,7 +335,7 @@ We present MM-Narrator, a novel system leveraging GPT-4 with multimodal in-conte
     <pre><code>@article{zhang2023mmnarrator,
   title= {MM-Narrator: Narrating Long-form Videos with Multimodal In-Context Learning},
   author={Chaoyi Zhang, Kevin Lin, Zhengyuan Yang, Jianfeng Wang, Linjie Li, Chung-Ching Lin, Zicheng Liu, Lijuan Wang},
-  journal={arXiv preprint arXiv:xxxxxxxx},
+  journal={arXiv preprint arXiv:2311.17435},
   year= {2023},
 }
 </code></pre>
@@ -360,58 +360,5 @@ We present MM-Narrator, a novel system leveraging GPT-4 with multimodal in-conte
 </section>
 
 
-<script>
-  $(".grid_item").hover(function () {
-    $(this).css("background", "#f2f1f1");
-    }, 
-    function () {
-        $(this).css("background", "#FFFFFF"); 
-    });
-
-  // Get the modal element
-  // var modal = document.getElementById("myModal");
-  var overlay = document.getElementById("overlay");
-  var span = document.getElementsByClassName("close")[0];
-
-
-  // Get the image element and the close button element
-  //  // display the GIF as it is
-  // var img = document.getElementById("modalImg");
-  // var img = document.getElementById("overlayImg");
-  // Add event listeners to each GIF element
-  var gifs = document.getElementsByClassName("mygif");
-  for (var i = 0; i < gifs.length; i++) {
-  gifs[i].addEventListener("click", function() {
-      //  // display the GIF as it is
-      // // Set the modal image source and display the modal
-      // img.src = this.src;
-
-      // display the GIF as a new image, will play from the begining
-      var img = document.createElement("img");
-      img.src = this.src.replace(".png", ".gif");
-
-      // Add the img element to the overlay content and display the overlay
-      document.getElementById("overlayContent").appendChild(img);
-      
-
-      // modal.style.display = "block";
-      overlay.style.display = "block";
-
-      // Hide the body overflow
-              document.body.style.overflow = "hidden";
-  });
-  }
-
-  // Add event listener to close button
-  span.addEventListener("click", function() {
-  // Remove the img element from the overlay content, hide the overlay, and restore the body overflow
-          document.getElementById("overlayContent").innerHTML = "";
-
-  // Hide the modal
-  // modal.style.display = "none";
-  overlay.style.display = "none";
-  document.body.style.overflow = "auto";
-  });
-</script>
 </body>
 </html>
